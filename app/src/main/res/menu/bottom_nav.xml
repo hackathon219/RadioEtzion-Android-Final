@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/navigation_podcasts"
+        android:icon="@drawable/ic_playlist"
+        android:title="תוכניות" />
+
+    <item
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/ic_heart"
+        android:title="מועדפים" />
+
+
+    <item
+        android:id="@+id/navigation_log"
+        android:icon="@drawable/ic_my_profile"
+        android:title="אישי" />
+
+</menu>

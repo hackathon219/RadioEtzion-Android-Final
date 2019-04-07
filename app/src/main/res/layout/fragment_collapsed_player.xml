@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:orientation="vertical"
+    tools:context=".fragments.CollapsedPlayerFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/bottomPlayer"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/lightGray">
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?android:selectableItemBackground"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:src="@drawable/ic_play_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/ibMinPlayerPlay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            android:background="?android:selectableItemBackground"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ibMinPlayerPause"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?android:selectableItemBackground"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_pause"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvMinPlayerTrackTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="15sp"
+            android:autoSizeMaxTextSize="20sp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="64dp" />
+    </android.support.constraint.ConstraintLayout>
+
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+</LinearLayout>
