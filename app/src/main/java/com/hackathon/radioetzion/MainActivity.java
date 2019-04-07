@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rv;
     private String podcastTitle;
     public static String podcastID;
+    public View viewBottom;
 
     Intent playerState = new Intent("playerState");
 
@@ -407,15 +408,6 @@ public class MainActivity extends AppCompatActivity {
 
             startPodcastFragment();
 
-
-//            Log.d(TAG, ("refreshTokens ") + "Trying to refresh tokens using a refresh token");
-//            boolean storedTokenAnonymous = tokensPersistenceManager.isStoredTokenAnonymous();
-//            if (storedTokenAnonymous) {
-//            }
-//            AppIdAuthorizationListener appIdAuthorizationListener =
-//                    new AppIdAuthorizationListener(this, appIDAuthorizationManager, storedTokenAnonymous, false);
-//            appID.signinWithRefreshToken(this, storedRefreshToken, appIdAuthorizationListener);
-
         } else {
             anonymousLogin();
         }
@@ -685,7 +677,6 @@ public class MainActivity extends AppCompatActivity {
                     playbackState.getState() == PlaybackStateCompat.STATE_PLAYING;
 
 
-            mIsPause = playbackState != null && playbackState.getState() == PlaybackStateCompat.STATE_PAUSED;
             playerState.putExtra("mIsLoading", mIsLoading);
             playerState.putExtra("mIsPlaying", mIsPlaying);
             playerState.putExtra("podcastID", podcastID);

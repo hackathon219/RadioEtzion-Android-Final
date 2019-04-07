@@ -44,6 +44,7 @@ import java.util.concurrent.ExecutionException;
 import static android.content.Context.MODE_PRIVATE;
 import static android.support.constraint.Constraints.TAG;
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 
 public class CommentFragment extends Fragment {
@@ -69,7 +70,7 @@ public class CommentFragment extends Fragment {
     private RecyclerView.AdapterDataObserver observer;
     private static String ANONYMOUS_USER_NAME = "אורח";
     private boolean fromPreview;
-    private View fillBottomSheet, fillCollapsePlayer;
+//    private View fillBottomSheet, fillCollapsePlayer;
 
 
     public static CommentFragment newInstance(String podcastID, boolean fromPreview) {
@@ -111,9 +112,9 @@ public class CommentFragment extends Fragment {
         });
         btnCloseFeedback.setOnClickListener(v -> getActivity().onBackPressed());
         if (fromPreview){
-            fillBottomSheet.setVisibility(View.VISIBLE);
+//            fillBottomSheet.setVisibility(View.VISIBLE);
             boolean playerCollapse = ((MainActivity)getActivity()).bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED;
-            fillCollapsePlayer.setVisibility(playerCollapse ? View.VISIBLE :  GONE);
+//            fillCollapsePlayer.setVisibility(playerCollapse ? View.VISIBLE :  GONE);
         }
 
 
@@ -127,8 +128,8 @@ public class CommentFragment extends Fragment {
         etMessage = view.findViewById(R.id.messageEdit);
         btnSendComment = view.findViewById(R.id.sendButton);
         mEmptyImageView = view.findViewById(R.id.emptyImage);
-        fillBottomSheet = view.findViewById(R.id.hideBottomSheet);
-        fillCollapsePlayer = view.findViewById(R.id.hideCollapsePlayer);
+//        fillBottomSheet = view.findViewById(R.id.hideBottomSheet);
+//        fillCollapsePlayer = view.findViewById(R.id.hideCollapsePlayer);
     }
 
     public String getStoredUserID() {
@@ -157,7 +158,7 @@ public class CommentFragment extends Fragment {
         adapter = new CommentAdapter(options) {
             @Override
             public void onDataChanged() {
-                mEmptyImageView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
+                mEmptyImageView.setVisibility(getItemCount() == 0 ? VISIBLE : View.GONE);
                 super.onDataChanged();
             }
         };
@@ -181,6 +182,10 @@ public class CommentFragment extends Fragment {
         rvComments.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
 
             System.out.println("addOnLayoutChangeListener chat");
+//            ((MainActivity)getActivity()).navBottomSheet.setVisibility(bottom < oldBottom ? View.GONE : VISIBLE);
+//            ((MainActivity)getActivity()).bottomSheet.setVisibility(bottom < oldBottom ? View.GONE : VISIBLE);
+
+
             if (bottom < oldBottom) {
                 rvComments.postDelayed(() -> rvComments.smoothScrollToPosition(
                         rvComments.getAdapter().getItemCount()), 100);
@@ -194,7 +199,7 @@ public class CommentFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             boolean playerCollapse = ((MainActivity)getActivity()).bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED;
-            fillCollapsePlayer.setVisibility(playerCollapse ? View.VISIBLE :  GONE);
+//            fillCollapsePlayer.setVisibility(playerCollapse ? View.VISIBLE :  GONE);
         }
     };
 
@@ -204,7 +209,12 @@ public class CommentFragment extends Fragment {
         getContext().registerReceiver(playerState, new IntentFilter("playerState"));
 
         System.out.println("onResume comment");
-//        ((MainActivity) getActivity()).bottomSheetBehavior.set
+        if (fromPreview){
+            ((MainActivity) getActivity()).bottomSheet.setVisibility(GONE);
+            ((MainActivity) getActivity()).navBottomSheet.setVisibility(GONE);
+        }else {
+            ((MainActivity) getActivity()).navBottomSheet.setVisibility(GONE);
+        }
     }
 
     @Override
@@ -213,7 +223,8 @@ public class CommentFragment extends Fragment {
         getContext().unregisterReceiver(playerState);
         System.out.println("onPause comment");
 
-//        ((MainActivity) getActivity()).bottomSheetBehavior.setState(3);
+        ((MainActivity) getActivity()).bottomSheet.setVisibility(VISIBLE);
+        ((MainActivity) getActivity()).navBottomSheet.setVisibility(VISIBLE);
     }
 
     @Override

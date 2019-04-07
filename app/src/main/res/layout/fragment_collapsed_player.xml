@@ -12,7 +12,7 @@
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/lightGray">
+        android:background="#F0F0F0">
 
 
         <ProgressBar
